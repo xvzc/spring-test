@@ -2,9 +2,8 @@ package com.example.project.user.domain.dto.user;
 
 import lombok.*;
 
-@Getter
 @Builder
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserAddResponseDTO {
     String username;
     String password;
