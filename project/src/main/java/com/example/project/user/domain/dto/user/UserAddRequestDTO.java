@@ -4,9 +4,9 @@ import lombok.*;
 
 @Getter
 public class UserAddRequestDTO {
-    String username;
-    String password;
-    String nickname;
-    String bio;
-    String email;
+    private String username;
+    private String password;
+    private String nickname;
+    private String bio;
+    private String email;
 }

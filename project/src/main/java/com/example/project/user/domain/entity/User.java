@@ -29,13 +29,17 @@ public class User {
     private String bio;
 
     @Column(nullable = false, length = 512)
-    private String email;
+    private Email email;
+    /**
+     * 만약 컬럼명이 Email 클래스에 정의된 것과 다르다면
+     * @AttributeOverride(name="value", column=@Column(name="mail"))로 덮어쓰기 가능
+     */
 
     @CreatedDate
-    private String created;
+    private LocalDateTime created;
 
     @Builder
-    protected User(String username, String password, String nickname, String bio, String email) {
+    protected User(String username, String password, String nickname, String bio, Email email) {
         this.username = username;
         this.password = password;
         this.nickname = nickname;
@@ -45,6 +49,9 @@ public class User {
 
     @PrePersist
     public void onPrePersist(){
-        this.created = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        this.created = LocalDateTime.parse(
+                LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        );
     }
 }

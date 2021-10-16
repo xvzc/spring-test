@@ -20,21 +20,30 @@ public class Post {
     @Column(nullable = false, length = 512)
     private String content;
 
+    @ManyToOne
+    @JoinColumn(name = "boards_id", nullable = false)
+    private Post post;
+
     @CreatedDate
-    private String created;
+    private LocalDateTime created;
 
     @LastModifiedDate
-    private String modified;
+    private LocalDateTime modified;
 
     @PrePersist
     public void onPrePersist(){
-        this.created = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        this.created = LocalDateTime.parse(
+                LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        );
         this.modified = this.created;
     }
 
     @PreUpdate
     public void onPreUpdate(){
-        this.modified = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+        this.modified= LocalDateTime .parse(
+                        LocalDateTime.now() .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+                );
     }
-
 }

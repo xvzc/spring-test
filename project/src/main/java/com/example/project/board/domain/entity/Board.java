@@ -1,6 +1,8 @@
 package com.example.project.board.domain.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "BOARDS")
@@ -11,4 +13,7 @@ public class Board {
 
     @Column(nullable = false, unique = true, length = 30)
     private String name;
+
+    @OneToMany
+    private List<Post> posts = new ArrayList<>();
 }
