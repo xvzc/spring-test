@@ -2,7 +2,7 @@ package com.example.project._global.error;
 
 import com.example.project._global.error.exception.AlreadyExistsException;
 import com.example.project._global.error.exception.ResourceNotFoundException;
-import com.example.project._global.response.ErrorResponse;
+import com.example.project._global.dto.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
