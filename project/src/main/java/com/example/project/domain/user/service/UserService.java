@@ -9,6 +9,7 @@ import com.example.project.domain.user.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,11 +40,14 @@ public class UserService {
         return UserDto.Response.of(user);
     }
 
+    @Transactional
     public UserDto.Response updateUser(final UserDto.UpdateRequest dto, final Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ErrorCode.USER_NOT_FOUND));
 
 //        TODO(Jerry) : findById로 가져온 user와 Session에서 가져온 유저가 동일한지 확인
+
+        user.update(dto);
 
         return UserDto.Response.of(user);
     }

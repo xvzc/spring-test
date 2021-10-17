@@ -4,7 +4,6 @@ import com.example.project._global.error.BasicError;
 import lombok.*;
 
 @Getter
-@Builder
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class ErrorResponse {
@@ -12,8 +11,6 @@ public class ErrorResponse {
     BasicError error;
 
     public static ErrorResponse of(BasicError error) {
-        return ErrorResponse.builder()
-                .error(error)
-                .build();
+        return new ErrorResponse(null, error);
     }
 }

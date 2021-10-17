@@ -4,7 +4,6 @@ import com.example.project._global.error.BasicError;
 import lombok.*;
 
 @Getter
-@Builder
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class UnitResponse<T> {
@@ -12,8 +11,6 @@ public class UnitResponse<T> {
     BasicError error;
 
     public static <T> UnitResponse<T> of(T data) {
-        return UnitResponse.<T>builder()
-                .data(data)
-                .build();
+        return new UnitResponse<>(data, null);
     }
 }

@@ -7,6 +7,8 @@ import com.example.project.domain.user.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/users")
@@ -24,7 +26,7 @@ public class UserController {
     }
 
     @PostMapping("")
-    public UnitResponse<UserDto.Response> addUser(@RequestBody final UserDto.AddRequest dto) {
+    public UnitResponse<UserDto.Response> addUser(@Valid @RequestBody final UserDto.AddRequest dto) {
         return UnitResponse.of(userService.addUser(dto));
     }
 

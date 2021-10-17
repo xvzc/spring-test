@@ -5,7 +5,6 @@ import lombok.*;
 import org.springframework.data.domain.Page;
 
 @Getter
-@Builder
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class PageResponse<T> {
@@ -13,8 +12,6 @@ public class PageResponse<T> {
     BasicError error;
 
     public static <T> PageResponse<T> of(Page<T> data) {
-        return PageResponse.<T>builder()
-                .data(data)
-                .build();
+        return new PageResponse<>(data, null);
     }
 }

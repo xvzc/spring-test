@@ -1,20 +1,23 @@
 package com.example.project.domain.user.dto;
 
-import com.example.project.domain.user.entity.Email;
 import com.example.project.domain.user.entity.User;
 import lombok.*;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
 public class UserDto {
 
     @Getter
     @Builder
     @EqualsAndHashCode
-    @AllArgsConstructor(access = AccessLevel.PROTECTED)
     public static class AddRequest {
         private String username;
+        @Size(min = 6, max = 20)
         private String password;
         private String nickname;
         private String bio;
+        @Email
         private String email;
 
         public User toEntity() {
@@ -23,7 +26,7 @@ public class UserDto {
                     .password(password)
                     .nickname(nickname)
                     .bio(bio)
-                    .email(Email.of(email))
+                    .email(email)
                     .build();
         }
     }
@@ -31,17 +34,14 @@ public class UserDto {
     @Getter
     @Builder
     @EqualsAndHashCode
-    @AllArgsConstructor(access = AccessLevel.PROTECTED)
     public static class UpdateRequest {
         private String nickname;
         private String bio;
-
     }
 
     @Getter
     @Builder
     @EqualsAndHashCode
-    @AllArgsConstructor(access = AccessLevel.PROTECTED)
     public static class Response {
         private String username;
         private String nickname;

@@ -5,6 +5,8 @@ import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -18,11 +20,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Size(min = 6, max = 12)
     @Column(nullable = false, unique = true, length = 30)
     private String username;
 
-    @Column(nullable = false, length = 512)
-    private String password;
+    @Valid
+    @Embedded
+    private Password password;
 
     @Column(nullable = false, unique = true, length = 30)
     private String nickname;
@@ -30,7 +34,8 @@ public class User {
     @Column(nullable = false, length = 191)
     private String bio;
 
-    @Column(nullable = false, length = 512)
+    @Valid
+    @Embedded
     private Email email;
     /**
      * 만약 컬럼명이 Email 클래스에 정의된 것과 다르다면
@@ -41,12 +46,12 @@ public class User {
     private LocalDateTime created;
 
     @Builder
-    protected User(String username, String password, String nickname, String bio, Email email) {
+    protected User(String username, String password, String nickname, String bio, String email) {
         this.username = username;
-        this.password = password;
+        this.password = Password.of(password);
         this.nickname = nickname;
         this.bio = bio;
-        this.email = email;
+        this.email = Email.of(email);
     }
 
     @PrePersist
@@ -57,10 +62,8 @@ public class User {
         );
     }
 
-    public User update(UserDto.UpdateRequest dto) {
+    public void update(UserDto.UpdateRequest dto) {
         this.nickname = dto.getNickname();
         this.bio = dto.getBio();
-
-        return this;
     }
 }

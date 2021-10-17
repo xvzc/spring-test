@@ -7,7 +7,6 @@ import java.util.List;
 
 
 @Getter
-@Builder
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class ListResponse<T> {
@@ -15,8 +14,6 @@ public class ListResponse<T> {
     BasicError error;
 
     public static <T> ListResponse<T> of(List<T> data) {
-        return ListResponse.<T>builder()
-                .data(data)
-                .build();
+        return new ListResponse<>(data, null);
     }
 }

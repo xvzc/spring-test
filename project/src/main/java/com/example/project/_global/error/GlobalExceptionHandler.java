@@ -10,6 +10,7 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolationException;
 import java.nio.file.AccessDeniedException;
 
 @Slf4j
@@ -47,11 +48,19 @@ public class GlobalExceptionHandler {
         return ErrorResponse.of(BasicError.of(ErrorCode.INVALID_INPUT_VALUE, e.getBindingResult()));
     }
 
-    // Bean Validation 실패
+    // 데이터베이스 무결성
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(DataIntegrityViolationException.class)
     protected ErrorResponse handleDataIntegrityViolationException(DataIntegrityViolationException e) {
         log.error("handleMethodArgumentNotValidException", e);
+        return ErrorResponse.of(BasicError.of(ErrorCode.INVALID_INPUT_VALUE));
+    }
+
+    // 데이터베이스 무결성
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(ConstraintViolationException.class)
+    protected ErrorResponse handleConstraintViolationException(ConstraintViolationException e) {
+        log.error("handlerConstraintViolationException", e);
         return ErrorResponse.of(BasicError.of(ErrorCode.INVALID_INPUT_VALUE));
     }
 
