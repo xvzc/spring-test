@@ -23,7 +23,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
     @InjectMocks
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @Mock
     private UserRepository userRepository;
@@ -42,7 +42,7 @@ public class UserServiceTest {
         User user= dto.toEntity();
         doReturn(user).when(userRepository).save(any(User.class));
 
-        UserDto.Response ret = new UserDto.Response(user);
+        UserDto.Response ret = UserDto.Response.of(user);
         assertThat(userService.addUser(dto), is(equalTo(ret)));
     }
 }

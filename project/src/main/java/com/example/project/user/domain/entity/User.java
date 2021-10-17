@@ -1,5 +1,6 @@
 package com.example.project.user.domain.entity;
 
+import com.example.project.user.domain.dto.UserDto;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -54,5 +55,12 @@ public class User {
                 LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         );
+    }
+
+    public User update(UserDto.UpdateRequest dto) {
+        this.nickname = dto.getNickname();
+        this.bio = dto.getBio();
+
+        return this;
     }
 }

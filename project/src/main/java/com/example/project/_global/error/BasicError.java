@@ -12,45 +12,44 @@ import java.util.stream.Collectors;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ErrorResponse {
+public class BasicError {
 
     private String message;
     private int status;
-    private List<FieldError> errors;
+    private List<FieldError> fields;
     private String code;
 
-
-    private ErrorResponse(final ErrorCode code, final List<FieldError> errors) {
+    private BasicError(final ErrorCode code, final List<FieldError> fields) {
         this.message = code.getMessage();
         this.status = code.getStatus();
-        this.errors = errors;
+        this.fields = fields;
         this.code = code.getCode();
     }
 
-    private ErrorResponse(final ErrorCode code) {
+    private BasicError(final ErrorCode code) {
         this.message = code.getMessage();
         this.status = code.getStatus();
         this.code = code.getCode();
-        this.errors = new ArrayList<>();
+        this.fields = new ArrayList<>();
     }
 
 
-    public static ErrorResponse of(final ErrorCode code, final BindingResult bindingResult) {
-        return new ErrorResponse(code, FieldError.of(bindingResult));
+    public static BasicError of(final ErrorCode code, final BindingResult bindingResult) {
+        return new BasicError(code, FieldError.of(bindingResult));
     }
 
-    public static ErrorResponse of(final ErrorCode code) {
-        return new ErrorResponse(code);
+    public static BasicError of(final ErrorCode code) {
+        return new BasicError(code);
     }
 
-    public static ErrorResponse of(final ErrorCode code, final List<FieldError> errors) {
-        return new ErrorResponse(code, errors);
+    public static BasicError of(final ErrorCode code, final List<FieldError> errors) {
+        return new BasicError(code, errors);
     }
 
-    public static ErrorResponse of(MethodArgumentTypeMismatchException e) {
+    public static BasicError of(MethodArgumentTypeMismatchException e) {
         final String value = e.getValue() == null ? "" : e.getValue().toString();
-        final List<ErrorResponse.FieldError> errors = ErrorResponse.FieldError.of(e.getName(), value, e.getErrorCode());
-        return new ErrorResponse(ErrorCode.INVALID_TYPE_VALUE, errors);
+        final List<BasicError.FieldError> errors = BasicError.FieldError.of(e.getName(), value, e.getErrorCode());
+        return new BasicError(ErrorCode.INVALID_TYPE_VALUE, errors);
     }
 
 

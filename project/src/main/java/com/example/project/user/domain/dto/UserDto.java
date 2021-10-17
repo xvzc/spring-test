@@ -7,23 +7,15 @@ import lombok.*;
 public class UserDto {
 
     @Getter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @Builder
     @EqualsAndHashCode
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
     public static class AddRequest {
-        String username;
-        String password;
-        String nickname;
-        String bio;
-        String email;
-
-        @Builder
-        public AddRequest(String username, String password, String nickname, String bio, String email) {
-            this.username = username;
-            this.password = password;
-            this.nickname = nickname;
-            this.bio = bio;
-            this.email = email;
-        }
+        private String username;
+        private String password;
+        private String nickname;
+        private String bio;
+        private String email;
 
         public User toEntity() {
             return User.builder()
@@ -37,33 +29,32 @@ public class UserDto {
     }
 
     @Getter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @Builder
     @EqualsAndHashCode
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
     public static class UpdateRequest {
-        String nickname;
-        String bio;
+        private String nickname;
+        private String bio;
 
-        @Builder
-        public UpdateRequest(String nickname, String bio) {
-            this.nickname = nickname;
-            this.bio = bio;
-        }
     }
 
     @Getter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @Builder
     @EqualsAndHashCode
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
     public static class Response {
-        String username;
-        String nickname;
-        String bio;
-        String email;
+        private String username;
+        private String nickname;
+        private String bio;
+        private String email;
 
-        public Response(final User user) {
-            this.username = user.getUsername();
-            this.nickname = user.getNickname();
-            this.bio = user.getBio();
-            this.email = user.getEmail().getValue();
+        public static Response of(final User user) {
+            return Response.builder()
+                    .username(user.getUsername())
+                    .nickname(user.getNickname())
+                    .bio(user.getBio())
+                    .email(user.getEmail().getValue())
+                    .build();
         }
     }
 }
