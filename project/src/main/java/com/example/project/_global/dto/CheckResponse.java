@@ -2,19 +2,18 @@ package com.example.project._global.dto;
 
 import com.example.project._global.error.BasicError;
 import lombok.*;
-import org.springframework.data.domain.Page;
 
 @Getter
 @Builder
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public class PageResponse<T> {
-    Page<T> data;
+public class CheckResponse {
+    Boolean success;
     BasicError error;
 
-    public static <T> PageResponse<T> of(Page<T> data) {
-        return PageResponse.<T>builder()
-                .data(data)
+    public static CheckResponse of(Boolean success) {
+        return CheckResponse.builder()
+                .success(success)
                 .build();
     }
 }

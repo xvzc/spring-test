@@ -1,5 +1,6 @@
 package com.example.project.domain.user.service;
 
+import com.example.project._global.dto.UnitResponse;
 import com.example.project.domain.user.dto.UserDto;
 import com.example.project.domain.user.entity.User;
 import com.example.project.domain.user.repository.UserRepository;
@@ -42,7 +43,6 @@ public class UserServiceTest {
         User user= dto.toEntity();
         doReturn(user).when(userRepository).save(any(User.class));
 
-        UserDto.Response ret = UserDto.Response.of(user);
-        assertThat(userService.addUser(dto), is(equalTo(ret)));
+        assertThat(userService.addUser(dto), is(UserDto.Response.of(user)));
     }
 }

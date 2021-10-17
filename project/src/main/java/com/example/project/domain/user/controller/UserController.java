@@ -1,7 +1,7 @@
 package com.example.project.domain.user.controller;
 
 import com.example.project._global.dto.ListResponse;
-import com.example.project._global.dto.SingleResponse;
+import com.example.project._global.dto.UnitResponse;
 import com.example.project.domain.user.dto.UserDto;
 import com.example.project.domain.user.service.UserService;
 import lombok.AllArgsConstructor;
@@ -14,22 +14,25 @@ public class UserController {
     UserService userService;
 
     @GetMapping("{id}")
-    public SingleResponse getUser(@PathVariable final Long id) {
-        return userService.getUser(id);
+    public UnitResponse<UserDto.Response> getUser(@PathVariable final Long id) {
+        return UnitResponse.of(userService.getUser(id));
     }
 
     @GetMapping("")
-    public ListResponse getUserList(@RequestParam(value = "user_id", required = false) String userId) {
-        return userService.getUserList();
+    public ListResponse<UserDto.Response> getUserList() {
+        return ListResponse.of(userService.getUserList());
     }
 
     @PostMapping("")
-    public SingleResponse addUser(@RequestBody final UserDto.AddRequest dto) {
-        return userService.addUser(dto);
+    public UnitResponse<UserDto.Response> addUser(@RequestBody final UserDto.AddRequest dto) {
+        return UnitResponse.of(userService.addUser(dto));
     }
 
     @PutMapping("/{id}")
-    public SingleResponse updateUser(@RequestBody final UserDto.UpdateRequest dto, @PathVariable final Long id) {
-        return userService.updateUser(dto, id);
+    public UnitResponse<UserDto.Response> updateUser(
+            @RequestBody final UserDto.UpdateRequest dto,
+            @PathVariable final Long id
+    ) {
+        return UnitResponse.of(userService.updateUser(dto, id));
     }
 }
