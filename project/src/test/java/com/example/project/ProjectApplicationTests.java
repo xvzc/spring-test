@@ -1,5 +1,6 @@
 package com.example.project;
 
+import com.example.project.user.domain.entity.Email;
 import com.example.project.user.domain.entity.User;
 import com.example.project.user.domain.repository.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ class ProjectApplicationTests {
                 .password("awefsdfe123123")
                 .nickname("nick21aw3")
                 .bio("awefawef")
-                .email("eawweef@email.com")
+                .email(Email.of("eawweef@email.com"))
                 .build()
         );
 

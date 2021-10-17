@@ -17,30 +17,30 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
-    public UserDto.Res getUser(final Long id) {
+    public UserDto.Response getUser(final Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ErrorCode.USER_NOT_FOUND));
 
-        return new UserDto.Res(user);
+        return new UserDto.Response(user);
     }
 
-    public List<UserDto.Res> getUserList() {
+    public List<UserDto.Response> getUserList() {
         List<User> users = userRepository.findAll();
-        return users.stream().map(user -> new UserDto.Res(user)).collect(Collectors.toList());
+        return users.stream().map(user -> new UserDto.Response(user)).collect(Collectors.toList());
     }
 
-    public UserDto.Res addUser(final UserDto.AddReq dto) {
+    public UserDto.Response addUser(final UserDto.AddRequest dto) {
         if (userRepository.existsByUsername(dto.getUsername())) {
             throw new AlreadyExistsException(ErrorCode.USER_DUPLICATION);
         }
 
         User user = userRepository.save(dto.toEntity());
 
-        return new UserDto.Res(user);
+        return new UserDto.Response(user);
     }
 
     @Override
-    public UserDto.Res updateUser(final UserDto.UpdateReq dto, final Long id) {
+    public UserDto.Response updateUser(final UserDto.UpdateRequest dto, final Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ErrorCode.USER_NOT_FOUND));
 
@@ -51,6 +51,6 @@ public class UserServiceImpl implements UserService {
                 .nickname(dto.getNickname())
                 .build();
 
-        return new UserDto.Res(updateUser);
+        return new UserDto.Response(updateUser);
     }
 }

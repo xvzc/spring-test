@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 @Table(name = "USERS")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

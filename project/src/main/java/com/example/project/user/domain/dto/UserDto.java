@@ -2,16 +2,14 @@ package com.example.project.user.domain.dto;
 
 import com.example.project.user.domain.entity.Email;
 import com.example.project.user.domain.entity.User;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 public class UserDto {
 
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
-    public static class AddReq {
+    @EqualsAndHashCode
+    public static class AddRequest {
         String username;
         String password;
         String nickname;
@@ -19,7 +17,7 @@ public class UserDto {
         String email;
 
         @Builder
-        public AddReq(String username, String password, String nickname, String bio, String email) {
+        public AddRequest(String username, String password, String nickname, String bio, String email) {
             this.username = username;
             this.password = password;
             this.nickname = nickname;
@@ -40,12 +38,13 @@ public class UserDto {
 
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
-    public static class UpdateReq {
+    @EqualsAndHashCode
+    public static class UpdateRequest {
         String nickname;
         String bio;
 
         @Builder
-        public UpdateReq(String nickname, String bio) {
+        public UpdateRequest(String nickname, String bio) {
             this.nickname = nickname;
             this.bio = bio;
         }
@@ -53,13 +52,14 @@ public class UserDto {
 
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
-    public static class Res {
+    @EqualsAndHashCode
+    public static class Response {
         String username;
         String nickname;
         String bio;
         String email;
 
-        public Res(final User user) {
+        public Response(final User user) {
             this.username = user.getUsername();
             this.nickname = user.getNickname();
             this.bio = user.getBio();
