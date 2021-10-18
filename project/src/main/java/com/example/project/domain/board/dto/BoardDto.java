@@ -1,4 +1,4 @@
 package com.example.project.domain.board.dto;
 
-public class BoardDTO {
+public class BoardDto {
 }

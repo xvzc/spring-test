@@ -1,6 +1,7 @@
 package com.example.project.domain.board.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
     @Column(nullable = false, unique = true, length = 30)
     private String name;
 

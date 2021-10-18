@@ -43,6 +43,7 @@ public class UserDto {
     @Builder
     @EqualsAndHashCode
     public static class Response {
+        private Long idx;
         private String username;
         private String nickname;
         private String bio;
@@ -50,6 +51,7 @@ public class UserDto {
 
         public static Response of(final User user) {
             return Response.builder()
+                    .idx(user.getId())
                     .username(user.getUsername())
                     .nickname(user.getNickname())
                     .bio(user.getBio())

@@ -13,10 +13,13 @@ public enum ErrorCode {
     ACCESS_DENIED(403, "G-004", "Access is Denied"),
 
     // User
+    USER_NOT_FOUND(404, "USER-000", "User not found"),
     EMAIL_DUPLICATION(400, "USER-001", "Email already exists"),
     LOGIN_FAILED(400, "USER-002", "Login failed"),
-    USER_NOT_FOUND(400, "USER-003", "User not found"),
-    USER_DUPLICATION(400, "USER-004", "User Already Exists")
+    USER_DUPLICATION(400, "USER-003", "User Already Exists"),
+
+    // Board
+    POST_NOT_FOUND(400, "BOARD-000", "Post not found")
     ; // 세미콜론 건드리지 마세요 ...
 
     private final String code;

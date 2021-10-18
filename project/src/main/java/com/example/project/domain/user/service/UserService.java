@@ -30,6 +30,7 @@ public class UserService {
         return users.stream().map(UserDto.Response::of).collect(Collectors.toList());
     }
 
+    @Transactional
     public UserDto.Response addUser(final UserDto.AddRequest dto) {
         if (userRepository.existsByUsername(dto.getUsername())) {
             throw new AlreadyExistsException(ErrorCode.USER_DUPLICATION);
