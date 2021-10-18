@@ -1,6 +1,5 @@
 package com.example.project.domain.user.service;
 
-import com.example.project._global.dto.UnitResponse;
 import com.example.project.domain.user.dto.UserDto;
 import com.example.project.domain.user.entity.User;
 import com.example.project.domain.user.repository.UserRepository;

@@ -1,8 +1,8 @@
 package com.example.project.domain.user.service;
 
-import com.example.project._global.error.ErrorCode;
-import com.example.project._global.error.exception.AlreadyExistsException;
-import com.example.project._global.error.exception.ResourceNotFoundException;
+import com.example.project.global.error.ErrorCode;
+import com.example.project.global.error.exception.AlreadyExistsException;
+import com.example.project.global.error.exception.ResourceNotFoundException;
 import com.example.project.domain.user.dto.UserDto;
 import com.example.project.domain.user.entity.User;
 import com.example.project.domain.user.repository.UserRepository;

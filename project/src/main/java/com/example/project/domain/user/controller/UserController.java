@@ -1,7 +1,7 @@
 package com.example.project.domain.user.controller;
 
-import com.example.project._global.dto.ListResponse;
-import com.example.project._global.dto.UnitResponse;
+import com.example.project.global.dto.ListResponse;
+import com.example.project.global.dto.UnitResponse;
 import com.example.project.domain.user.dto.UserDto;
 import com.example.project.domain.user.service.UserService;
 import lombok.AllArgsConstructor;

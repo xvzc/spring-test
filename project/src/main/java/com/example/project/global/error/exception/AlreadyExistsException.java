@@ -1,6 +1,6 @@
-package com.example.project._global.error.exception;
+package com.example.project.global.error.exception;
 
-import com.example.project._global.error.ErrorCode;
+import com.example.project.global.error.ErrorCode;
 
 public class AlreadyExistsException extends RuntimeException {
     public ErrorCode errorCode;

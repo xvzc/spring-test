@@ -1,6 +1,6 @@
-package com.example.project._global.dto;
+package com.example.project.global.dto;
 
-import com.example.project._global.error.BasicError;
+import com.example.project.global.error.BasicError;
 import lombok.*;
 import org.springframework.data.domain.Page;
 

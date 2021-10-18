@@ -1,8 +1,7 @@
-package com.example.project._global.config;
+package com.example.project.global.config;
 
 import org.h2.tools.Server;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import java.sql.SQLException;
 

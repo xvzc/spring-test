@@ -1,4 +1,4 @@
-package com.example.project._global.error;
+package com.example.project.global.error;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
