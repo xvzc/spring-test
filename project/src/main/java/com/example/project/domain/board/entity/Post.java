@@ -29,8 +29,8 @@ public class Post {
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "boards_id", nullable = false)
-    private Post post;
+    @JoinColumn(name = "boards_id")
+    private Board board;
 
     @CreatedDate
     private LocalDateTime created;

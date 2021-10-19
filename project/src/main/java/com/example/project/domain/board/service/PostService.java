@@ -38,7 +38,7 @@ public class PostService {
     };
 
     @Transactional
-    public PostDto.Response updatePost(PostDto.UpdateRequest dto, Long id) {
+    public PostDto.Response updatePost(Long id, PostDto.UpdateRequest dto) {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ErrorCode.POST_NOT_FOUND));
 

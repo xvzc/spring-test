@@ -3,7 +3,7 @@ package com.example.project.domain.board.controller;
 import com.example.project.domain.board.dto.PostDto;
 import com.example.project.domain.board.service.PostService;
 import com.example.project.global.dto.ListResponse;
-import lombok.AllArgsConstructor;
+import com.example.project.global.dto.UnitResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +19,16 @@ public class PostController {
     @GetMapping("")
     public ListResponse<PostDto.Response> getPosts() {
         return ListResponse.of(postService.getPosts());
+    }
+
+    @PostMapping("")
+    public UnitResponse<PostDto.Response> addPost(@RequestBody PostDto.AddRequest dto) {
+        return UnitResponse.of(postService.addPost(dto));
+    }
+
+    @PutMapping("/{id}")
+    public UnitResponse<PostDto.Response> updatePost(@PathVariable Long id, @RequestBody PostDto.UpdateRequest dto) {
+        return UnitResponse.of(postService.updatePost(id, dto));
     }
 
     @DeleteMapping("/{id}")

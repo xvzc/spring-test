@@ -44,7 +44,7 @@ public class UserService {
     }
 
     @Transactional
-    public UserDto.Response updateUser(final UserDto.UpdateRequest dto, final Long id) {
+    public UserDto.Response updateUser(final Long id, final UserDto.UpdateRequest dto) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ErrorCode.USER_NOT_FOUND));
 
@@ -53,5 +53,12 @@ public class UserService {
         user.update(dto);
 
         return UserDto.Response.of(user);
+    }
+
+    public void deleteUser(final Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(ErrorCode.USER_NOT_FOUND));
+
+        userRepository.delete(user);
     }
 }
