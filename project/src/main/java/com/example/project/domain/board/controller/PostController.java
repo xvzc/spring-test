@@ -17,8 +17,11 @@ public class PostController {
     }
 
     @GetMapping("")
-    public ListResponse<PostDto.Response> getPosts() {
-        return ListResponse.of(postService.getPosts());
+    public ListResponse<PostDto.Response> getPosts(
+            @RequestParam(name = "board_id", required = false) Long boardId,
+            @RequestParam(name = "title", required = false) String title
+    ) {
+        return ListResponse.of(postService.getPosts(boardId, title));
     }
 
     @PostMapping("")

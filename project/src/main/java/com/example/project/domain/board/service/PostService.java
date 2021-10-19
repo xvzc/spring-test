@@ -2,6 +2,7 @@ package com.example.project.domain.board.service;
 
 import com.example.project.domain.board.dto.PostDto;
 import com.example.project.domain.board.entity.Post;
+import com.example.project.domain.board.repository.PostQueryRepository;
 import com.example.project.domain.board.repository.PostRepository;
 import com.example.project.domain.user.dto.UserDto;
 import com.example.project.global.error.ErrorCode;
@@ -15,9 +16,11 @@ import java.util.stream.Collectors;
 @Service
 public class PostService {
     private final PostRepository postRepository;
+    private final PostQueryRepository postQueryRepository;
 
-    public PostService(PostRepository postRepository) {
+    public PostService(PostRepository postRepository, PostQueryRepository postQueryRepository) {
         this.postRepository = postRepository;
+        this.postQueryRepository = postQueryRepository;
     }
 
     public PostDto.Response getPost(Long id) {
@@ -27,8 +30,8 @@ public class PostService {
         return PostDto.Response.of(post);
     }
 
-    public List<PostDto.Response> getPosts() {
-        List<Post> posts = postRepository.findAll();
+    public List<PostDto.Response> getPosts(Long boardId, String title) {
+        List<Post> posts = postQueryRepository.getPosts(boardId, title);
         return posts.stream().map(PostDto.Response::of).collect(Collectors.toList());
     }
 

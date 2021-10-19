@@ -3,7 +3,6 @@ package com.example.project.domain.board.service;
 import com.example.project.domain.board.dto.BoardDto;
 import com.example.project.domain.board.dto.PostDto;
 import com.example.project.domain.board.entity.Board;
-import com.example.project.domain.board.entity.Post;
 import com.example.project.domain.board.repository.BoardRepository;
 import com.example.project.global.error.ErrorCode;
 import com.example.project.global.error.exception.AlreadyExistsException;
@@ -11,7 +10,6 @@ import com.example.project.global.error.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
