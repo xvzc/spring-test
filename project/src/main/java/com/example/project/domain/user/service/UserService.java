@@ -6,7 +6,6 @@ import com.example.project.global.error.exception.ResourceNotFoundException;
 import com.example.project.domain.user.dto.UserDto;
 import com.example.project.domain.user.entity.User;
 import com.example.project.domain.user.repository.UserRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -14,9 +13,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
 public class UserService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public UserDto.Response getUser(final Long id) {
         User user = userRepository.findById(id)
@@ -25,7 +27,7 @@ public class UserService {
         return UserDto.Response.of(user);
     }
 
-    public List<UserDto.Response> getUserList() {
+    public List<UserDto.Response> getUsers() {
         List<User> users = userRepository.findAll();
         return users.stream().map(UserDto.Response::of).collect(Collectors.toList());
     }

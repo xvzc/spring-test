@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS `users`
     `bio`     VARCHAR(512) NOT NULL,
     `email`   VARCHAR(191) NOT NULL,
     `created` TIMESTAMP  NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `deleted` VARCHAR(1) NOT NULL DEFAULT 'N',
     PRIMARY KEY (`id`),
     UNIQUE (`email`),
     UNIQUE (`username`),

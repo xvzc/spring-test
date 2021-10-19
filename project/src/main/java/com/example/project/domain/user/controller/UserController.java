@@ -21,8 +21,8 @@ public class UserController {
     }
 
     @GetMapping("")
-    public ListResponse<UserDto.Response> getUserList() {
-        return ListResponse.of(userService.getUserList());
+    public ListResponse<UserDto.Response> getUsers() {
+        return ListResponse.of(userService.getUsers());
     }
 
     @PostMapping("")
