@@ -1,8 +1,6 @@
 package com.example.project.domain.board.dto;
 
 import com.example.project.domain.board.entity.Board;
-import com.example.project.domain.board.entity.Post;
-import com.example.project.domain.board.entity.QBoard;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
