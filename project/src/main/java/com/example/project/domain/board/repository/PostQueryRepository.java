@@ -9,15 +9,15 @@ import java.util.List;
 
 @Repository
 public class PostQueryRepository {
-    private final JPAQueryFactory query;
+    private final JPAQueryFactory queryFactory;
 
-    public PostQueryRepository(JPAQueryFactory query) {
-        this.query = query;
+    public PostQueryRepository(JPAQueryFactory queryFactory) {
+        this.queryFactory = queryFactory;
     }
 
     public List<Post> getPosts(Long boardId, String title) {
         QPost post = QPost.post;
-        return query.select(post).from(post)
+        return queryFactory.select(post).from(post)
                 .where(post.title.contains(title).and(post.board.id.eq(boardId)))
                 .fetch();
     }
