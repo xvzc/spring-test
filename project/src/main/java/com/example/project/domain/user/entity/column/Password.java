@@ -1,12 +1,9 @@
-package com.example.project.domain.user.entity;
+package com.example.project.domain.user.entity.column;
 
 import lombok.*;
-import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 @Embeddable

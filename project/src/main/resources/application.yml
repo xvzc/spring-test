@@ -8,9 +8,11 @@ spring:
     username: sa
     password:
     initialization-mode: always
+
   h2:
     console:
       enabled: true
+
   jpa:
     show-sql: true
     properties:
@@ -18,5 +20,37 @@ spring:
         format_sql: true
         dialect: org.hibernate.dialect.MySQLDialect
     hibernate:
-#      ddl-auto: none
       ddl-auto: none
+
+  thymeleaf:
+    cache: false
+
+  # OAuth2 Settings
+  security:
+    oauth2:
+      resource:
+        jwt:
+          key-value: "qwerasdf"
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_OAUTH_CLIENT_ID}
+            client-secret: ${GOOGLE_OAUTH_CLIENT_SECRET}
+            scope: "profile, email"
+          kakao:
+            clientId: ${KAKAO_OAUTH_REST_API_KEY}
+            clientSecret: ${KAKAO_OAUTH_SECRET}
+            clientAuthenticationMethod: post
+            authorizationGrantType: authorization_code
+            redirectUri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
+            scope:
+              - profile_nickname
+              - profile_image
+              - account_email
+            clientName: Kakao
+        provider:
+          kakao:
+            authorizationUri: https://kauth.kakao.com/oauth/authorize
+            tokenUri: https://kauth.kakao.com/oauth/token
+            userInfoUri: https://kapi.kakao.com/v2/user/me
+            userNameAttribute: id

@@ -1,10 +1,9 @@
-package com.example.project.domain.user.entity;
+package com.example.project.domain.user.entity.column;
 
 import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import java.util.Objects;
 
 @Embeddable
 @Getter

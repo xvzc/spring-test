@@ -5,17 +5,15 @@ DROP TABLE IF EXISTS `board`;
 CREATE TABLE IF NOT EXISTS `users`
 (
     `id`      BIGINT       NOT NULL AUTO_INCREMENT,
-    `username`    VARCHAR(30)  NOT NULL,
-    `password`      VARCHAR(512) NOT NULL,
-    `nickname`    VARCHAR(30)  NOT NULL,
-    `bio`     VARCHAR(512) NOT NULL,
+    `name`    VARCHAR(191) NOT NULL,
     `email`   VARCHAR(191) NOT NULL,
-    `created` TIMESTAMP  NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `picture` VARCHAR(191) NOT NULL,
+    `role`    VARCHAR(191) NOT NULL DEFAULT 'USER',
+    `last_login` TIMESTAMP  NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `deleted` VARCHAR(1) NOT NULL DEFAULT 'N',
     PRIMARY KEY (`id`),
-    UNIQUE (`email`),
-    UNIQUE (`username`),
-    UNIQUE (`nickname`)
+    UNIQUE (`name`),
+    UNIQUE (`email`)
 );
 
 CREATE TABLE `boards`

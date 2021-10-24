@@ -1,13 +1,13 @@
-INSERT INTO `users` (`username`, `password`, `nickname`, `bio`, `email`)
-VALUES ('angel134', 'PaSsWoRd01', 'abc672', 'Hello Wolrd!', 'angel@email.com'),
-       ('bubbles', 'PaSsWoRd02', 'zfz2232', 'In the end, we all felt like we ate too much.', 'bubbles@email.com'),
-       ('shimmer', 'PaSsWoRd03', 'shsh372', 'The quick brown fox jumps over the lazy dog', 'shimmer@email.com'),
-       ('pretty372', 'PaSsWoRd04', 'propro', 'This is an example bio', 'pretty@email.com'),
-       ('tank-boy', 'PaSsWoRd04', 'tank', 'example bio', 'tank-boy@email.com'),
-       ('cooandcoo', 'PaSsWoRd04', 'coo', 'what should i do', 'coo@email.com'),
-       ('dollydolly', 'PaSsWoRd04', 'ddy3737', 'help me.', 'dolly@email.com'),
-       ('polymoly', 'PaSsWoRd04', 'manymoney', 'sample bio1.', 'pmpm@email.com'),
-       ('honeyman', 'PaSsWoRd04', 'hon00', 'just a sample data.', 'hon090@email.com')
+INSERT INTO `users` (`name`, `email`, `picture`)
+VALUES ('angel134', 'angel@email.com', ''),
+       ('bubbles', 'bubbles@email.com', ''),
+       ('shimmer', 'shimmer@email.com', ''),
+       ('pretty372','pretty@email.com', ''),
+       ('tank-boy', 'tank-boy@email.com', ''),
+       ('cooandcoo', 'coo@email.com', ''),
+       ('dollydolly', 'dolly@email.com', ''),
+       ('polymoly', 'pmpm@email.com', ''),
+       ('honeyman', 'hon090@email.com', '')
        ;
 
 INSERT INTO `boards` (`name`)

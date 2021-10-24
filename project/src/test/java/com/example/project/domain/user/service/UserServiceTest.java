@@ -30,17 +30,5 @@ public class UserServiceTest {
     @DisplayName("유저 생성")
     @Test
     void addUser() {
-        final UserDto.AddRequest dto = UserDto.AddRequest.builder()
-                .username("username")
-                .password("PaSsWoRd!2!#")
-                .nickname("usernick")
-                .bio("hello world")
-                .email("user@email.com")
-                .build();
-
-        User user= dto.toEntity();
-        doReturn(user).when(userRepository).save(any(User.class));
-
-        assertThat(userService.addUser(dto), is(UserDto.Response.of(user)));
     }
 }
